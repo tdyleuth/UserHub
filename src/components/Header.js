@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import {
+    storeCurrentUser,
+    clearCurrentUser
+} from '../auth';
+
 import './Header.css';
 
 const Header = ({
@@ -25,11 +30,13 @@ const Header = ({
   }
 
   const handleUserLogin = (event) => {
+    storeCurrentUser(selectedUser);
     setCurrentUser(selectedUser);
   }
 
   const handleUserLogout = (event) => {
     setSelectedUser(userList[0]);
+    clearCurrentUser();
     setCurrentUser(null);
   }
 
